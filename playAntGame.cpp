@@ -1,28 +1,33 @@
 #include "playAntGame.hpp"
+#include "printBoard.hpp"
+#include "ant.hpp"
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
-
 
 void playAntGame() {
     const int ROWS = 9; // default height
     const int COLS = 9; // default width
     int userRows = 0; // for user to select game height
     int userCols = 0; // for user to select game width
+    int steps = 0; // for user to select total moves of the ant
+    int totalSteps = 0;
 
-    cout << "Please enter the amount of rows or type '-1' for default values (MAX = 80): ";
+    cout << "Please enter the amount of rows or type '-1' for default values (MIN = 5, MAX = 80): ";
     cin >> userRows;
-    cout << "Please enter the amount of columns or type '-1' for default values (MAX = 80): ";
-    cin >> userCols;
-
     if (userRows == -1) {
       userRows = ROWS;
     }
 
+    cout << "Please enter the amount of columns or type '-1' for default values (MIN = 5, MAX = 80): ";
+    cin >> userCols;
     if (userCols == -1) {
       userCols = COLS;
     }
+
+    cout << "Please enter the amount of steps you would like the Ant to make: ";
+    cin >> steps;
 
     //dynamically allocate array for ant board
     char **antBoard = new char*[userRows];
@@ -36,23 +41,11 @@ void playAntGame() {
       }
     } 
 
-  //print board TODO MAKE INTO A FUNCTION
-  cout << endl << "Current Game Board:" << endl << endl;
-  cout << "  ";
-  for (int col = 0; col < userCols; col++) {
-    cout << col + 1 << " ";
-  }
-  cout << endl;
+    Ant langAnt;
+    antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '@';
 
-  for (int row = 0; row < userRows; row++) {
-    cout << row + 1 << " ";
-    for (int col = 0; col < userCols; col++) {
-      cout << antBoard[row][col] << " ";
-    }
-    cout << endl;
-  }
-//   cout << endl;
-// }
+    cout << endl << "Total Steps: " << totalSteps << endl;
+    printBoard(antBoard, userRows, userCols);
 
      //deallocate memory stored on the heap for the dynamic array
     for (int index = 0; index < userRows; index++) {

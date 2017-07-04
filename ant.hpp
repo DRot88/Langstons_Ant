@@ -1,16 +1,24 @@
 #ifndef ANT_HPP
 #define ANT_HPP
 
+enum Direction {WEST, NORTH, EAST, SOUTH};
+
 class Ant {
 private:
-  int *currentCell; // to hold the location of the ant
-  void direction;
-  int stepCount = 0;
+  char* currentCell; // to hold the location of the ant
+  char* lastCell; //previous cell to adjust color;
+  Direction currentDir;
+  int stepCount; // track how far the ant has moved
+  int antRow;
+  int antCol;
 
 public:
   Ant(); //default constructor
-  Ant(int* startingCell, void direction); //constructor
+  Ant(int startRow, int startCol, Direction); //constructor
   void move();
+  void increaseSteps();
+  int getAntRow();
+  int getAntCol();
 };
 
 #endif

@@ -12,15 +12,13 @@ Menu::Menu() {
 
 void Menu::displayMenu() {
     int input;
-    cout << endl << "Please choose from the options below, or type '-1' to quit" << endl;
+    cout << endl << "Please choose from the options below." << endl;
     cout << "Option 1: Play Game" << endl;
-    cout << "Option 2: View Board" << endl;
-    cout << "Option 3: Replay Game" << endl;
-    cout << "To quit, type '-1'" << endl << endl;
+    cout << "Option 2: Quit" << endl << endl;
 
     cin >> input;
 
-    if (input == -1) {
+    if (input == 2) {
       return;
     } else {
       setInput(input);

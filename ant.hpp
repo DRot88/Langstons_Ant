@@ -5,8 +5,6 @@ enum Direction {WEST, NORTH, EAST, SOUTH};
 
 class Ant {
 private:
-  char* currentCell; // to hold the location of the ant
-  char* lastCell; //previous cell to adjust color;
   Direction currentDir;
   int stepCount; // track how far the ant has moved
   int antRow;
@@ -16,7 +14,10 @@ public:
   Ant(); //default constructor
   Ant(int startRow, int startCol, Direction); //constructor
   void move();
+  void turnRight();
+  void turnLeft();
   void increaseSteps();
+  int getSteps();
   int getAntRow();
   int getAntCol();
 };

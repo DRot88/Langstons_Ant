@@ -19,6 +19,14 @@ int Ant::getAntRow() {
   return this->antRow;
 }
 
+void Ant::setAntRow(int r) {
+  this->antRow = r;
+}
+
+void Ant::setAntCol(int c) {
+  this->antCol = c;
+}
+
 int Ant::getAntCol() {
   return this->antCol;
 }
@@ -37,8 +45,6 @@ void Ant::turnRight() {
   } else {
     currentDir = WEST;
   }
-
-  move();
 }
 
 void Ant::turnLeft() {
@@ -51,8 +57,6 @@ void Ant::turnLeft() {
   } else {
     currentDir = EAST;
   }
-
-  move();
 }
 
 void Ant::move() {
@@ -68,4 +72,7 @@ void Ant::move() {
   increaseSteps();
 }
 
+Direction Ant::getDirection() {
+  return this-> currentDir;
+}
 

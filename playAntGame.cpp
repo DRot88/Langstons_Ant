@@ -11,6 +11,8 @@ void playAntGame() {
     const int ROWS = 9; // default height
     const int COLS = 9; // default width
     const int STEPS = 9; // default steps
+    const char WHITE = ' '; // white space
+    const char BLACK = '#'; // black space
     int userRows = 0; // for user to select game height
     int userCols = 0; // for user to select game width
     int totalSteps = 0; // for user to select total moves of the ant
@@ -73,7 +75,7 @@ void playAntGame() {
 
     for (int r = 0; r < userRows; r += 1) {
       for (int c = 0; c < userCols; c += 1) {
-        antBoard[r][c] = '-';
+        antBoard[r][c] = WHITE;
       }
     } 
 
@@ -82,53 +84,30 @@ void playAntGame() {
     cout << endl << endl;
 
     lastPosition = antBoard[langAnt.getAntRow()][langAnt.getAntCol()];
-    antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '@';
+    antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = ANT;
     printBoard(antBoard, userRows, userCols);
 
     while (langAnt.getSteps() < totalSteps) {
-    if (lastPosition == '-') { 
-      antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '#';
-      langAnt.turnRight();
-      if (langAnt.getAntRow() == userRows - 1 && langAnt.getDirection() == SOUTH) {
-        langAnt.setAntRow(-1);
-      }
-      if (langAnt.getAntRow() == 0 && langAnt.getDirection() == NORTH) {
-        langAnt.setAntRow(userRows);
-      }
-      if (langAnt.getAntCol() == userCols - 1 && langAnt.getDirection() == EAST) {
-        langAnt.setAntCol(-1);
-      }
-      if (langAnt.getAntCol() == 0 && langAnt.getDirection() == WEST) {
-        langAnt.setAntCol(userCols);
-      }      
-      langAnt.move();
-      lastPosition = antBoard[langAnt.getAntRow()][langAnt.getAntCol()];
-      antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '@';
-    } else if (lastPosition == '#') {
-      antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '-';
-      langAnt.turnLeft();
-      if (langAnt.getAntRow() == userRows - 1 && langAnt.getDirection() == SOUTH) {
-        langAnt.setAntRow(-1);
-      }
-      if (langAnt.getAntRow() == 0 && langAnt.getDirection() == NORTH) {
-        langAnt.setAntRow(userRows);
-      }
-      if (langAnt.getAntCol() == userCols - 1 && langAnt.getDirection() == EAST) {
-        langAnt.setAntCol(-1);
-      }
-      if (langAnt.getAntCol() == 0 && langAnt.getDirection() == WEST) {
-        langAnt.setAntCol(userCols);
-      }        
-      langAnt.move();
-      lastPosition = antBoard[langAnt.getAntRow()][langAnt.getAntCol()];
-      antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = '@';
+      if (lastPosition == WHITE) { 
+        antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = BLACK;
+        langAnt.turnRight();
+        checkEdges(&langAnt, userRows, userCols);    
+        langAnt.move();
+        lastPosition = antBoard[langAnt.getAntRow()][langAnt.getAntCol()];
+        antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = ANT;
+      } else if (lastPosition == BLACK) {
+        antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = WHITE;
+        langAnt.turnLeft();
+        checkEdges(&langAnt, userRows, userCols);     
+        langAnt.move();
+        lastPosition = antBoard[langAnt.getAntRow()][langAnt.getAntCol()];
+        antBoard[langAnt.getAntRow()][langAnt.getAntCol()] = ANT;
     }
 
     cout << endl << "Total Steps Taken: " << langAnt.getSteps() << endl;
     printBoard(antBoard, userRows, userCols);    
   }
-
-    
+ 
      //deallocate memory stored on the heap for the dynamic array
     for (int index = 0; index < userRows; index++) {
       delete[] antBoard[index];

@@ -16,3 +16,19 @@ bool isValidInt(int x) {
     return false;
   }
 }
+
+
+void checkEdges(Ant* a, int r, int c) {
+  if (a->getAntRow() == r - 1 && a->getDirection() == SOUTH) {
+    a->setAntRow(-1);
+  }
+  if (a->getAntRow() == 0 && a->getDirection() == NORTH) {
+    a->setAntRow(r);
+  }
+  if (a->getAntCol() == c - 1 && a->getDirection() == EAST) {
+    a->setAntCol(-1);
+  }
+  if (a->getAntCol() == 0 && a->getDirection() == WEST) {
+    a->setAntCol(c);
+  }        
+}

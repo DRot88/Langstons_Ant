@@ -2,6 +2,7 @@
 #define ANT_HPP
 
 enum Direction {WEST, NORTH, EAST, SOUTH};
+const char ANT = '@'; // ant on board
 
 class Ant {
 private:

@@ -35,6 +35,12 @@ int Ant::getSteps() {
   return this->stepCount;
 }
 
+/*********************************************************************
+** Function: turnRight
+** Description: This function turns the ant right, based on the
+                current direction it is facing.
+**********************************************************************/
+
 void Ant::turnRight() {
   if (currentDir == WEST) {
     currentDir = NORTH;
@@ -46,6 +52,12 @@ void Ant::turnRight() {
     currentDir = WEST;
   }
 }
+
+/*********************************************************************
+** Function: turnRight
+** Description: This function turns the ant left, based on the
+                current direction it is facing.
+**********************************************************************/
 
 void Ant::turnLeft() {
   if (currentDir == WEST) {
@@ -59,6 +71,13 @@ void Ant::turnLeft() {
   }
 }
 
+/*********************************************************************
+** Function: turnRight
+** Description: This function moves the ant forward one unit, based on
+                the current direction it is facing. After moving forward,
+                it calls the increaseSteps function to keep track of
+                the amount of times it has moved.
+**********************************************************************/
 void Ant::move() {
   if (currentDir == WEST) {
     antCol -= 1;

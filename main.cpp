@@ -1,3 +1,10 @@
+/****************************************************************
+** Author: Daniel Rotenberg
+** Date: 7/9/2017
+** Description: This program is designed to implement a console
+                version of Langston's Ant.
+****************************************************************/
+
 // #include "ant.hpp"
 #include "menu.hpp"
 #include "playAntGame.hpp"

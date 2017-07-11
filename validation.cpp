@@ -8,6 +8,13 @@ const int MIN = 5;
 const int MAX = 50;
 const int DEFAULT = -1;
 
+/*********************************************************************
+** Function: isValidInt
+** Description: This function takes an int as an argument and checks 
+                to see if it either falls within the min/max values
+                allowed, or if it is equal to the default value.
+**********************************************************************/
+
 bool isValidInt(int x) {
   if ( ((x >= MIN) && (x <= MAX)) || x == DEFAULT ) {
     return true;
@@ -17,6 +24,13 @@ bool isValidInt(int x) {
   }
 }
 
+/*********************************************************************
+** Function: checkEdges
+** Description: This function takes an Ant, and the row and columns as
+                arguments. If the ant is at an "edge" of the array,
+                it repositions the ant to be on the opposite side of the 
+                array before it is moved foward.
+**********************************************************************/
 
 void checkEdges(Ant* a, int r, int c) {
   if (a->getAntRow() == r - 1 && a->getDirection() == SOUTH) {

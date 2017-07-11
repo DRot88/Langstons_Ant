@@ -13,7 +13,6 @@ private:
 
 public:
   Ant(); //default constructor
-  Ant(int startRow, int startCol, Direction); //constructor
   void move();
   void turnRight();
   void turnLeft();
